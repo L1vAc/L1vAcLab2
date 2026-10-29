@@ -227,7 +227,7 @@ static uint32_t p6_op_1(uint32_t x) { return ((x << 5) | (x >> 27)) ^ 0xc795; }
 static uint32_t p6_op_2(uint32_t x) { return (x * 9 + 0x6e8a) ^ (x * 3); }
 static uint32_t p6_op_3(uint32_t x) { return (x ^ (x >> 7)) + 0x43cb; }
 static uint32_t p6_op_4(uint32_t x) { return (x >> 2) | (x << 30); }
-static uint32_t p6_op_5(uint32_t x) { return (x ^ 0x62ac) + (x << 5); 
+static uint32_t p6_op_5(uint32_t x) { return (x ^ 0x62ac) + (x << 5);}
 
 static uint32_t (*p6_table[8])(uint32_t) = {
     p6_op_4,  /* idx=0 */
@@ -239,8 +239,7 @@ static uint32_t (*p6_table[8])(uint32_t) = {
     p6_op_0,  /* idx=6 */
     p6_op_5,  /* idx=7 */
 };
-
-/* 对应汇编 0x402560 */
+ 
 static uint32_t p6_dispatch(uint64_t arg) {
     uint32_t t1   = (uint32_t)(arg >> 6) ^ (uint32_t)(arg >> 32);
     uint32_t idx1 = (uint32_t)(arg & 0x7);          
